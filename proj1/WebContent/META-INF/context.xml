@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Context>
+    <Resource
+        name="jdbc/javabase" type="javax.sql.DataSource"
+        maxActive="100" maxIdle="30" maxWait="10000" 
+        url="jdbc:mysql://127.6.60.2:3306/javabase"
+        driverClassName="com.mysql.jdbc.Driver"
+        username="admin4ZAKXf9" password="sun123"
+    />
+</Context>

@@ -51,7 +51,7 @@ public class GetItemsOfAType extends HttpServlet {
 			return;
 		}
 		
-		DAOFactory javabase = DAOFactory.getInstance("javabase.jdbc");
+		DAOFactory javabase = DAOFactory.getInstance("javabase.jndi");
 		ItemDAO itemDAO = javabase.getItemDAO();
 		List<Item> items = itemDAO.findByCategory(categoryId);
 		for (Item item : items) {

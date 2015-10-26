@@ -2,12 +2,12 @@ package com.proj1.model;
 
 public class Item {
 
-	long itemCode;
-	String itemName;
-	String itemDesc;
-	float price;
-	int categoryId;
-	String fileName;
+	private long itemCode;
+	private String itemName;
+	private String itemDesc;
+	private float price;
+	private int categoryId;
+	private String fileName;
 
 	public long getItemCode() {
 		return itemCode;

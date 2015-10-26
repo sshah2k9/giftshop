@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.util.Properties;
 
 import com.proj1.dao.exceptions.DAOConfigurationException;
+import com.proj1.utils.Utilities;
 
 /**
  * This class immediately loads the DAO properties file 'dao.properties' once in memory and provides
@@ -16,7 +17,7 @@ public class DAOProperties {
 
     // Constants ----------------------------------------------------------------------------------
 
-    private static final String PROPERTIES_FILE = "dao.properties";
+    private static final String PROPERTIES_FILE = Utilities.isWindows()?"dao_test.properties":"dao.properties";
     private static final Properties PROPERTIES = new Properties();
 
     static {
@@ -79,6 +80,10 @@ public class DAOProperties {
         }
 
         return property;
+    }
+    
+    public static void main(String [] args){
+    	System.out.println(new DAOProperties("javabase.jdbc").getProperty("url",false));
     }
 
 }

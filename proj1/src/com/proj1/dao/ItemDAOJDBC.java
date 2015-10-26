@@ -22,12 +22,12 @@ public class ItemDAOJDBC implements ItemDAO {
 	// Constants
 	// ----------------------------------------------------------------------------------
 
-	private static final String SQL_FIND_BY_ID = "SELECT item_code, item_name, item_desc, price, category_id, file_name FROM Item WHERE item_code = ?";
-	private static final String SQL_FIND_BY_CATEGORY_ID = "SELECT item_code, item_name, item_desc, price, category_id, file_name FROM Item WHERE category_id = ?";
-	private static final String SQL_LIST_ORDER_BY_ITEM_CODE = "SELECT item_code, item_name, item_desc, price, category_id, file_name FROM Item ORDER BY item_code";
-	private static final String SQL_INSERT = "INSERT INTO Item (item_name, item_desc, price, category_id, file_name) VALUES (?, ?, ?, ?, ?)";
-	private static final String SQL_UPDATE = "UPDATE Item SET item_name = ?, item_desc = ?, price = ?, category_id = ?, file_name = ? WHERE item_code = ?";
-	private static final String SQL_DELETE = "DELETE FROM Item WHERE item_code = ?";
+	private static final String SQL_FIND_BY_ID = "SELECT item_code, item_name, item_desc, price, category_id, file_name FROM ITEM WHERE item_code = ?";
+	private static final String SQL_FIND_BY_CATEGORY_ID = "SELECT item_code, item_name, item_desc, price, category_id, file_name FROM ITEM WHERE category_id = ?";
+	private static final String SQL_LIST_ORDER_BY_ITEM_CODE = "SELECT item_code, item_name, item_desc, price, category_id, file_name FROM ITEM ORDER BY item_code";
+	private static final String SQL_INSERT = "INSERT INTO ITEM (item_name, item_desc, price, category_id, file_name) VALUES (?, ?, ?, ?, ?)";
+	private static final String SQL_UPDATE = "UPDATE ITEM SET item_name = ?, item_desc = ?, price = ?, category_id = ?, file_name = ? WHERE item_code = ?";
+	private static final String SQL_DELETE = "DELETE FROM ITEM WHERE item_code = ?";
 
 	// Vars
 	// ---------------------------------------------------------------------------------------

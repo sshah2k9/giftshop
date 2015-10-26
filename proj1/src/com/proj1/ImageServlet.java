@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.proj1.utils.Utilities;
+
 /**
  * Servlet implementation class ImageServlet
  */
@@ -38,7 +40,11 @@ public class ImageServlet extends HttpServlet {
 
 		// Define base path somehow. You can define it as init-param of the
 		// servlet.
-		this.filePath = "C:\\My_data\\junk\\";
+		if (Utilities.isWindows()) {
+			this.filePath = "C:\\My_data\\junk\\";
+		} else {
+			this.filePath = System.getenv("OPENSHIFT_DATA_DIR");
+		}
 
 		// In a Windows environment with the Applicationserver running on the
 		// c: volume, the above path is exactly the same as "c:\files".
