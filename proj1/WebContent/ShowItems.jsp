@@ -41,7 +41,7 @@
             <c:out value="${image.categoryId}" />
         </td>
         <td>
-            <img style="display:block;" width="120" height="80" src="file/imageServlet?fileName=${image.fileName}"  />
+            <img style="display:block;" width="120" height="80" src="${image.fileName}"  />
         </td>
     </tr>
     </c:forEach>

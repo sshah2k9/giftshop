@@ -189,13 +189,14 @@ public class ItemDAOJDBC implements ItemDAO {
 	 *             If something fails at database level.
 	 */
 	private static Item map(ResultSet resultSet) throws SQLException {
+		String imageURLPrefix = "file/imageServlet?fileName=";
 		Item item = new Item();
 		item.setItemCode(resultSet.getLong("item_code"));
 		item.setItemName(resultSet.getString("item_name"));
 		item.setItemDesc(resultSet.getString("item_desc"));
 		item.setPrice(resultSet.getFloat("price"));
 		item.setCategoryId(resultSet.getInt("category_id"));
-		item.setFileName(resultSet.getString("file_name"));
+		item.setFileName(imageURLPrefix+resultSet.getString("file_name"));
 		return item;
 	}
 

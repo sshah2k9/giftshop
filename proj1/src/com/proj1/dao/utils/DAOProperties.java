@@ -17,10 +17,12 @@ public class DAOProperties {
 
     // Constants ----------------------------------------------------------------------------------
 
-    private static final String PROPERTIES_FILE = Utilities.isWindows()?"dao_test.properties":"dao.properties";
+    private static final String PROPERTIES_FILE;
     private static final Properties PROPERTIES = new Properties();
 
     static {
+    	PROPERTIES_FILE = Utilities.isWindows()?"dao_test.properties":"dao.properties";
+    	
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
         InputStream propertiesFile = classLoader.getResourceAsStream(PROPERTIES_FILE);
 
@@ -80,6 +82,10 @@ public class DAOProperties {
         }
 
         return property;
+    }
+    
+    public static String getPropertyWithFullKey(String key) {
+        return PROPERTIES.getProperty(key);
     }
     
     public static void main(String [] args){
