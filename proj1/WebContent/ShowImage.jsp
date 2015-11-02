@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<img src="file/imageServlet?image_type=gift">
+<img src="files/image?fileName=file1.jpg">
 </body>
 </html>

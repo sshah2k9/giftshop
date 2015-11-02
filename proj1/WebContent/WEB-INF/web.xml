@@ -23,7 +23,7 @@
 </servlet>
   <servlet-mapping>
     <servlet-name>imageServlet</servlet-name>
-    <url-pattern>/file/*</url-pattern>
+    <url-pattern>/files/image</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>GetItemsOfAType</servlet-name>

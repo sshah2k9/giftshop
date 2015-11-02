@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<style>
+	table{
+		width:500px;
+		height:500px;
+	}
+	table td{
+		padding:10px;
+		margin:10px;
+		border:1px solid #ccc;
+	}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>
+
+	$(document).ready(function() {
+		$("#bt1").click(function() {
+			var selectedValue = $("#sl1 option:selected").val();
+			$.getJSON("getItems", {itemType : selectedValue}, function(result,status) {
+				if (status == "success") {
+					$("#table1").empty();
+					$.each(result, function(i, field) {
+						var $tableRow = $( '<tr/>');
+						$tableRow.append( '<td>' + field.itemCode + '</td>' );
+						$tableRow.append( '<td>' + field.itemName + '</td>' );
+						$tableRow.append( '<td>' + field.itemDesc + '</td>' );
+						$tableRow.append( '<td>' + field.price + '</td>' );
+						$tableRow.append( '<td>' + field.categoryId + '</td>' );
+									
+						var img = '<img style="display:block;" width="120" height="80" src="' + field.fileName + '" />';
+						
+						$tableRow.append( '<td>' + img + '</td>' );
+						
+						$("#table1").append($tableRow);
+					});
+				}else{
+					alert("Error");
+				}
+			});
+		});
+	});
+</script>
+</head>
+<body>
+
+<label>Select Item Type</label>
+<select id = "sl1">
+  <option value="1">Gift</option>
+  <option value="2">Flower</option>
+  <option value="3">Cake</option>
+</select>
+<button id="bt1">OK</button>
+<table id = "table1"></table>
+
+</body>
+</html>

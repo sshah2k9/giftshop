@@ -60,16 +60,18 @@ public class GetItemsOfAType extends HttpServlet {
 		String json = gson.toJson(items);
 		System.out.println("json === "+json);
 		
-		for (Item item : items) {
-			System.out.println("Item: " + item);
-		}
-		// store data in session
-		HttpSession session = request.getSession();
-		session.setAttribute("itemList", items);
-
-		// forward the request (not redirect)
-		RequestDispatcher dispatcher = request.getRequestDispatcher("ShowItems.jsp");
-		dispatcher.forward(request, response);
+		response.setContentType("application/json");
+		response.getOutputStream().print(json);
+//		for (Item item : items) {
+//			System.out.println("Item: " + item);
+//		}
+//		// store data in session
+//		HttpSession session = request.getSession();
+//		session.setAttribute("itemList", items);
+//
+//		// forward the request (not redirect)
+//		RequestDispatcher dispatcher = request.getRequestDispatcher("ShowItems.jsp");
+//		dispatcher.forward(request, response);
 	}
 
 	/**
