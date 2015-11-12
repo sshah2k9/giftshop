@@ -2,8 +2,13 @@ package com.proj1.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Item implements Serializable{
 
+	@Id
 	private long itemCode;
 	private String itemName;
 	private String itemDesc;

@@ -5,4 +5,8 @@ public class Utilities {
 	public static boolean isWindows(){
 		return OS.startsWith("Windows");
 	}
+	
+	public static boolean isMac(){
+		return OS.startsWith("Mac");
+	}
 }

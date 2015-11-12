@@ -42,7 +42,10 @@ public class ImageServlet extends HttpServlet {
 		// servlet.
 		if (Utilities.isWindows()) {
 			this.filePath = "C:\\My_data\\junk\\";
-		} else {
+		} else if(Utilities.isMac()){
+			this.filePath = "/Users/Sunil/projects/project1/data/";
+		}
+		else {
 			this.filePath = System.getenv("OPENSHIFT_DATA_DIR");
 		}
 
