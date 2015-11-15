@@ -39,20 +39,20 @@ import com.proj1.dao.utils.DAOProperties;
  * omit the driver property, then the url property will be assumed as JNDI name. When using JNDI
  * with username/password preconfigured, you can omit the username and password properties as well.
  * <p>
- * Here are basic examples of valid properties for a database with the name 'javabase':
+ * Here are basic examples of valid properties for a database with the name 'giftshop':
  * <pre>
- * javabase.jdbc.url = jdbc:mysql://localhost:3306/javabase
- * javabase.jdbc.driver = com.mysql.jdbc.Driver
- * javabase.jdbc.username = root
- * javabase.jdbc.password = sun123
+ * giftshop.jdbc.url = jdbc:mysql://localhost:3306/giftshop
+ * giftshop.jdbc.driver = com.mysql.jdbc.Driver
+ * giftshop.jdbc.username = root
+ * giftshop.jdbc.password = sun123
  * </pre>
  * <pre>
- * javabase.jndi.url = jdbc/javabase
+ * giftshop.jndi.url = jdbc/giftshop
  * </pre>
  * Here is a basic use example:
  * <pre>
- * DAOFactory javabase = DAOFactory.getInstance("javabase.jdbc");
- * UserDAO userDAO = javabase.getUserDAO();
+ * DAOFactory giftshop = DAOFactory.getInstance("giftshop.jdbc");
+ * UserDAO userDAO = giftshop.getUserDAO();
  * </pre>
  */
 public abstract class DAOFactory {

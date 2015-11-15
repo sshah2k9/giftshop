@@ -11,6 +11,7 @@ import java.util.List;
 
 import com.proj1.dao.exceptions.DAOException;
 import com.proj1.dao.interfaces.ItemDAO;
+import com.proj1.model.Category;
 import com.proj1.model.Item;
 
 /**
@@ -116,7 +117,7 @@ public class ItemDAOJDBC implements ItemDAO {
 			throw new IllegalArgumentException("Item is already created, the item code is not 0.");
 		}
 
-		Object[] values = { item.getItemName(), item.getItemDesc(), item.getPrice(), item.getCategoryId(),
+		Object[] values = { item.getItemName(), item.getItemDesc(), item.getPrice(), item.getCategory().getCategoryId(),
 				item.getFileName() };
 
 		try (Connection connection = daoFactory.getConnection();
@@ -128,7 +129,7 @@ public class ItemDAOJDBC implements ItemDAO {
 
 			try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
 				if (generatedKeys.next()) {
-					item.setItemCode(generatedKeys.getLong(1));
+					item.setItemCode(generatedKeys.getInt(1));
 				} else {
 					throw new DAOException("Creating item failed, no generated key obtained.");
 				}
@@ -145,7 +146,7 @@ public class ItemDAOJDBC implements ItemDAO {
 		}
 
 		Object[] values = { item.getItemCode(), item.getItemName(), item.getItemDesc(), item.getPrice(),
-				item.getCategoryId(), item.getFileName() };
+				item.getCategory().getCategoryId(), item.getFileName() };
 
 		try (Connection connection = daoFactory.getConnection();
 				PreparedStatement statement = prepareStatement(connection, SQL_UPDATE, false, values);) {
@@ -191,11 +192,13 @@ public class ItemDAOJDBC implements ItemDAO {
 	private static Item map(ResultSet resultSet) throws SQLException {
 		String imageURLPrefix = "files/image?fileName=";
 		Item item = new Item();
-		item.setItemCode(resultSet.getLong("item_code"));
+		item.setItemCode(resultSet.getInt("item_code"));
 		item.setItemName(resultSet.getString("item_name"));
 		item.setItemDesc(resultSet.getString("item_desc"));
 		item.setPrice(resultSet.getFloat("price"));
-		item.setCategoryId(resultSet.getInt("category_id"));
+		Category category = new Category();
+		category.setCategoryId(resultSet.getInt("category_id"));
+		item.setCategory(category);
 		item.setFileName(imageURLPrefix+resultSet.getString("file_name"));
 		return item;
 	}

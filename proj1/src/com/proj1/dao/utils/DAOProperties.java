@@ -89,7 +89,7 @@ public class DAOProperties {
     }
     
     public static void main(String [] args){
-    	System.out.println(new DAOProperties("javabase.jdbc").getProperty("url",false));
+    	System.out.println(new DAOProperties("giftshop.jdbc").getProperty("url",false));
     }
 
 }

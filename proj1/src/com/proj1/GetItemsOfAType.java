@@ -14,7 +14,9 @@ import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.proj1.adapters.ItemAdapter;
 import com.proj1.dao.DAOFactory;
+import com.proj1.dao.ItemHome;
 import com.proj1.dao.interfaces.ItemDAO;
 import com.proj1.model.Item;
 
@@ -53,10 +55,15 @@ public class GetItemsOfAType extends HttpServlet {
 			return;
 		}
 		
-		DAOFactory javabase = DAOFactory.getInstance("javabase.jndi");
-		ItemDAO itemDAO = javabase.getItemDAO();
-		List<Item> items = itemDAO.findByCategory(categoryId);
-		Gson gson = new GsonBuilder().create();
+		DAOFactory giftshop = DAOFactory.getInstance("giftshop.jndi");
+		ItemDAO itemDAO = giftshop.getItemDAO();
+		//List<Item> items = itemDAO.findByCategory(categoryId);
+		List<Item> items = new ItemHome().findByCategoryId(categoryId);
+		for (Item item : items) {
+			System.out.println("Item: " + item);
+		}
+		//Gson gson = new GsonBuilder().create();
+		Gson gson = (new GsonBuilder().registerTypeAdapter(Item.class, new ItemAdapter())).create();
 		String json = gson.toJson(items);
 		System.out.println("json === "+json);
 		
