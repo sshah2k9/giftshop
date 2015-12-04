@@ -1,11 +1,12 @@
 package com.proj1.dao;
-// Generated Nov 14, 2015 7:53:22 PM by Hibernate Tools 4.3.1.Final
+// Generated Nov 26, 2015 7:29:16 PM by Hibernate Tools 4.3.1.Final
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.proj1.listeners.EMF;
 import com.proj1.model.OrderDetails;
 
 /**
@@ -17,9 +18,12 @@ import com.proj1.model.OrderDetails;
 public class OrderDetailsHome {
 
 	private static final Log log = LogFactory.getLog(OrderDetailsHome.class);
-
-	@PersistenceContext
+	
 	private EntityManager entityManager;
+
+	public OrderDetailsHome(EntityManager entityManager){
+		this.entityManager = entityManager;
+	}
 
 	public void persist(OrderDetails transientInstance) {
 		log.debug("persisting OrderDetails instance");

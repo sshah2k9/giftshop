@@ -20,7 +20,11 @@
   <servlet>
     <servlet-name>videoServlet</servlet-name>
     <servlet-class>com.proj1.VideoStreamingServlet</servlet-class>
-</servlet>
+  </servlet>
+  <servlet>
+    <servlet-name>FileUploadServlet</servlet-name>
+    <servlet-class>com.proj1.VideoUploaderServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>imageServlet</servlet-name>
     <url-pattern>/files/image</url-pattern>
@@ -32,6 +36,10 @@
   <servlet-mapping>
     <servlet-name>videoServlet</servlet-name>
     <url-pattern>/files/video</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>FileUploadServlet</servlet-name>
+    <url-pattern>/uploadFile</url-pattern>
   </servlet-mapping>
   <resource-ref>
     <res-ref-name>jdbc/giftshop</res-ref-name>

@@ -1,5 +1,5 @@
 package com.proj1.model;
-// Generated Nov 14, 2015 7:53:22 PM by Hibernate Tools 4.3.1.Final
+// Generated Dec 3, 2015 10:04:36 PM by Hibernate Tools 4.3.1.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -26,8 +26,8 @@ public class Address implements java.io.Serializable {
 	private String state;
 	private String pin;
 	private String phoneNumber;
-	private Set<User> users = new HashSet<User>(0);
 	private Set<DeliveryDetails> deliveryDetailses = new HashSet<DeliveryDetails>(0);
+	private Set<User> users = new HashSet<User>(0);
 
 	public Address() {
 	}
@@ -37,15 +37,15 @@ public class Address implements java.io.Serializable {
 	}
 
 	public Address(String recipient, String areaDetails, String city, String state, String pin, String phoneNumber,
-			Set<User> users, Set<DeliveryDetails> deliveryDetailses) {
+			Set<DeliveryDetails> deliveryDetailses, Set<User> users) {
 		this.recipient = recipient;
 		this.areaDetails = areaDetails;
 		this.city = city;
 		this.state = state;
 		this.pin = pin;
 		this.phoneNumber = phoneNumber;
-		this.users = users;
 		this.deliveryDetailses = deliveryDetailses;
+		this.users = users;
 	}
 
 	@Id
@@ -115,21 +115,21 @@ public class Address implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "address")
-	public Set<User> getUsers() {
-		return this.users;
-	}
-
-	public void setUsers(Set<User> users) {
-		this.users = users;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "address")
 	public Set<DeliveryDetails> getDeliveryDetailses() {
 		return this.deliveryDetailses;
 	}
 
 	public void setDeliveryDetailses(Set<DeliveryDetails> deliveryDetailses) {
 		this.deliveryDetailses = deliveryDetailses;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "address")
+	public Set<User> getUsers() {
+		return this.users;
+	}
+
+	public void setUsers(Set<User> users) {
+		this.users = users;
 	}
 
 }

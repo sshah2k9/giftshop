@@ -1,5 +1,5 @@
 package com.proj1.dao;
-// Generated Nov 14, 2015 7:53:22 PM by Hibernate Tools 4.3.1.Final
+// Generated Nov 26, 2015 7:29:16 PM by Hibernate Tools 4.3.1.Final
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

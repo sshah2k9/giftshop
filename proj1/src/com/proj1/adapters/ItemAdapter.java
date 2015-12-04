@@ -19,6 +19,7 @@ public class ItemAdapter implements JsonSerializer<Item> {
 		jsonObject.addProperty("itemDesc", item.getItemDesc());
 		jsonObject.addProperty("price", item.getPrice());
 		jsonObject.addProperty("fileName", imageURLPrefix+item.getFileName());
+		jsonObject.addProperty("availability", item.getAvailability());
 		return jsonObject;
 	}
 }

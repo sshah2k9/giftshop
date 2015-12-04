@@ -1,9 +1,10 @@
 package com.proj1.dao;
-// Generated Nov 14, 2015 7:53:22 PM by Hibernate Tools 4.3.1.Final
+// Generated Nov 26, 2015 7:29:16 PM by Hibernate Tools 4.3.1.Final
 
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import org.apache.commons.logging.Log;
@@ -14,6 +15,7 @@ import com.proj1.model.Item;
 
 /**
  * Home object for domain model class Item.
+ * 
  * @see com.proj1.model.Item
  * @author Hibernate Tools
  */
@@ -26,6 +28,10 @@ public class ItemHome {
 	
 	public ItemHome(){
 		entityManager = EMF.createEntityManager();
+	}
+	
+	public ItemHome(EntityManager entityManager){
+		this.entityManager = entityManager;
 	}
 
 	public void persist(Item transientInstance) {
@@ -73,14 +79,14 @@ public class ItemHome {
 			throw re;
 		}
 	}
-	
+
 	public List<Item> findByCategoryId(Integer id) {
 		log.debug("getting Item instance with category id: " + id);
 		try {
 			Query query = entityManager.createNamedQuery("Item.byCategoryId");
 			query.setParameter(1, id);
 			@SuppressWarnings("unchecked")
-			List<Item> items = (List<Item>)query.getResultList();
+			List<Item> items = (List<Item>) query.getResultList();
 			log.debug("get successful");
 			return items;
 		} catch (RuntimeException re) {

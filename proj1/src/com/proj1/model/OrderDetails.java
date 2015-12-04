@@ -1,6 +1,8 @@
 package com.proj1.model;
-// Generated Nov 14, 2015 7:53:22 PM by Hibernate Tools 4.3.1.Final
+// Generated Dec 3, 2015 10:04:36 PM by Hibernate Tools 4.3.1.Final
 
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -8,7 +10,10 @@ import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -19,24 +24,19 @@ import javax.persistence.Table;
 public class OrderDetails implements java.io.Serializable {
 
 	private Integer orderId;
-	private DeliveryDetails deliveryDetails;
-	private Item item;
-	private Message message;
 	private User user;
+	private Set<Item> items = new HashSet<Item>(0);
+	private DeliveryDetails deliveryDetails;
+	private Message message;
 
 	public OrderDetails() {
 	}
 
-	public OrderDetails(DeliveryDetails deliveryDetails, Item item) {
-		this.deliveryDetails = deliveryDetails;
-		this.item = item;
-	}
-
-	public OrderDetails(DeliveryDetails deliveryDetails, Item item, Message message, User user) {
-		this.deliveryDetails = deliveryDetails;
-		this.item = item;
-		this.message = message;
+	public OrderDetails(User user, Set<Item> items, DeliveryDetails deliveryDetails, Message message) {
 		this.user = user;
+		this.items = items;
+		this.deliveryDetails = deliveryDetails;
+		this.message = message;
 	}
 
 	@Id
@@ -52,7 +52,28 @@ public class OrderDetails implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "delivery_id", nullable = false)
+	@JoinColumn(name = "sender_id")
+	public User getUser() {
+		return this.user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "order_details_item", catalog = "giftshop", joinColumns = {
+			@JoinColumn(name = "order_id", nullable = false, updatable = false) }, inverseJoinColumns = {
+					@JoinColumn(name = "item_code", nullable = false, updatable = false) })
+	public Set<Item> getItems() {
+		return this.items;
+	}
+
+	public void setItems(Set<Item> items) {
+		this.items = items;
+	}
+
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "orderDetails")
 	public DeliveryDetails getDeliveryDetails() {
 		return this.deliveryDetails;
 	}
@@ -61,34 +82,13 @@ public class OrderDetails implements java.io.Serializable {
 		this.deliveryDetails = deliveryDetails;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "item_code", nullable = false)
-	public Item getItem() {
-		return this.item;
-	}
-
-	public void setItem(Item item) {
-		this.item = item;
-	}
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "message_id")
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "orderDetails")
 	public Message getMessage() {
 		return this.message;
 	}
 
 	public void setMessage(Message message) {
 		this.message = message;
-	}
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "sender_id")
-	public User getUser() {
-		return this.user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
 	}
 
 }
